@@ -121,10 +121,12 @@ export class PreloadScene extends Phaser.Scene {
       { key: GameConfig.AUDIO.CHIP_POT, path: 'audio_chipsToPot.wav' },
       { key: GameConfig.AUDIO.FOLD, path: 'audio_fold.wav' },
       { key: GameConfig.AUDIO.CHECK, path: 'audio_check.wav' },
-      { key: GameConfig.AUDIO.YOUR_TURN, path: 'audio_yourTurn.wav' },
-      { key: GameConfig.AUDIO.TIMEOUT, path: 'audio_timeout.wav' },
-      { key: GameConfig.AUDIO.WIN, path: 'audio_normalWin.wav' },
+      { key: GameConfig.AUDIO.CALL, path: 'audio_call.wav' },
+      { key: GameConfig.AUDIO.RAISE, path: 'audio_raise.wav' },
+      { key: GameConfig.AUDIO.WIN, path: 'audio_win.wav' },
       { key: GameConfig.AUDIO.BIG_WIN, path: 'audio_allinWin.wav' },
+      { key: GameConfig.AUDIO.CARD_FLIP, path: 'audio_cardFlip.wav' },
+      { key: GameConfig.AUDIO.CHIP, path: 'audio_chip.wav' },
     ];
 
     audioFiles.forEach(audio => {

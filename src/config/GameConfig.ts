@@ -57,10 +57,12 @@ export const GameConfig = {
     CHIP_POT: 'audio_chipsToPot',
     FOLD: 'audio_fold',
     CHECK: 'audio_check',
-    YOUR_TURN: 'audio_yourTurn',
-    TIMEOUT: 'audio_timeout',
-    WIN: 'audio_normalWin',
+    CALL: 'audio_call',
+    RAISE: 'audio_raise',
+    WIN: 'audio_win',
     BIG_WIN: 'audio_allinWin',
+    CARD_FLIP: 'audio_cardFlip',
+    CHIP: 'audio_chip'
   },
 
   // API接口配置

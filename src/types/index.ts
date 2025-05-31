@@ -78,15 +78,15 @@ export enum GameStage {
   SHOWDOWN = 'showdown',
 }
 
-// 扑克牌花色枚举
+// 扑克牌花色
 export enum CardSuit {
-  SPADES = 'spades',    // 黑桃
-  HEARTS = 'hearts',    // 红心
-  DIAMONDS = 'diamonds', // 方片
-  CLUBS = 'clubs',      // 梅花
+  HEARTS = 'h',
+  DIAMONDS = 'd',
+  CLUBS = 'c',
+  SPADES = 's'
 }
 
-// 扑克牌点数枚举
+// 扑克牌点数
 export enum CardRank {
   TWO = 2,
   THREE = 3,
@@ -100,14 +100,16 @@ export enum CardRank {
   JACK = 11,
   QUEEN = 12,
   KING = 13,
-  ACE = 14,
+  ACE = 14
 }
 
 // 扑克牌接口
 export interface Card {
-  suit: CardSuit;
-  rank: CardRank;
-  id: string;
+  suit: 'h' | 'd' | 'c' | 's'; // 红桃、方块、梅花、黑桃
+  value: '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K' | 'A';
+  id: string; // 唯一标识，如 "Ah" 表示红桃A
+  // 添加兼容旧代码的属性
+  rank?: CardRank;
 }
 
 // 玩家信息接口
@@ -127,27 +129,44 @@ export interface Player {
   lastAction?: PlayerAction;
 }
 
+// 牌型等级，从高到低排序
+export enum HandRank {
+  ROYAL_FLUSH = 0,     // 皇家同花顺
+  STRAIGHT_FLUSH = 1,  // 同花顺
+  FOUR_OF_A_KIND = 2,  // 四条
+  FULL_HOUSE = 3,      // 葫芦
+  FLUSH = 4,           // 同花
+  STRAIGHT = 5,        // 顺子
+  THREE_OF_A_KIND = 6, // 三条
+  TWO_PAIR = 7,        // 两对
+  ONE_PAIR = 8,        // 一对
+  HIGH_CARD = 9        // 高牌
+}
+
 // 游戏状态接口
 export interface GameState {
-  roomInfo: RoomInfo;
-  stage: GameStage;
+  roomInfo: {
+    id: string;
+    name: string;
+    type: RoomType;
+    smallBlind: number;
+    bigBlind: number;
+    minBuyIn: number;
+    maxBuyIn: number;
+    status: RoomStatus;
+  };
   players: Player[];
-  currentPlayerIndex: number;
+  stage: GameStage;
+  pot: number;
+  currentBet: number;
+  minBet: number;
   dealerIndex: number;
   smallBlindIndex: number;
   bigBlindIndex: number;
+  currentPlayerIndex: number;
   communityCards: Card[];
-  pot: number;
-  sidePots: SidePot[];
-  minBet: number;
-  currentBet: number;
-  roundStartTime: number;
-}
-
-// 边池接口
-export interface SidePot {
-  amount: number;
-  eligiblePlayers: string[];
+  deck: Card[]; // 牌堆
+  sidePots: { amount: number; eligiblePlayers: string[] }[]; // 边池
 }
 
 // API响应接口
